@@ -1,0 +1,47 @@
+#ifndef ScalarConverter_H
+#define ScalarConverter_H
+
+#include <iostream>
+#include <string>
+
+#define F_MAX 340282346638528859811704183484516925440.0000000000000000
+#define F_MIN -340282346638528859811704183484516925440.0000000000000000 
+
+#define D_MIN -179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000
+#define D_MAX  179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000
+
+const std::string red("\033[0;31m");
+const std::string green("\033[1;32m");
+const std::string yellow("\033[1;33m");
+const std::string cyan("\033[0;36m");
+const std::string magenta("\033[0;35m");
+const std::string reset("\033[0m");
+
+class ScalarConverter
+{
+private:
+    char _char;
+    int _int;
+    float _float;
+    double _double;
+    std::string _snum;
+public:
+    ScalarConverter(); // default;
+    ScalarConverter(std::string string);
+    ~ScalarConverter();
+    ScalarConverter( ScalarConverter const & src );
+
+    ScalarConverter & operator=(ScalarConverter const & rhs);
+
+    //Static Function Member
+    static void Convert(std::string s_num);
+
+    class InputError : public std::exception
+    {
+        public :
+            virtual const char * what()const throw();
+    };
+};
+
+
+#endif
